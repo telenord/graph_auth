@@ -12,8 +12,8 @@ const schema = require('./schema/schema');
 const app = express();
 
 // Replace with your mongoLab URI
-const MONGO_URI = 'mongodb://telebot:qweasdzxc@ds239029.mlab.com:39029/auth';
-
+//const MONGO_URI = 'mongodb://telebot:qweasdzxc@ds239029.mlab.com:39029/auth';
+const MONGO_URI = 'mongodb://localhost:27017/gql_auth';
 // Mongoose's built in promise library is deprecated, replace it with ES2015 Promise
 mongoose.Promise = global.Promise;
 
@@ -52,6 +52,9 @@ app.use('/graphql', expressGraphQL({
   graphiql: true
 }));
 
+
+
+
 // Webpack runs as a middleware.  If any request comes in for the root route ('/')
 // Webpack will respond with the output of the webpack process: an HTML file and
 // a single bundle.js output of all of our client side Javascript
@@ -59,5 +62,11 @@ const webpackMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('../webpack.config.js');
 app.use(webpackMiddleware(webpack(webpackConfig)));
+
+// app.get('*', function(req, res) {
+//   res.redirect('/');
+// });
+
+//app.use(Express.static(path.resolve(__dirname, '../client')));
 
 module.exports = app;
