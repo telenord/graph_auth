@@ -14,7 +14,6 @@ class Login extends Component {
     }
   }
   componentWillUpdate(nextProps){
-    console.log(this.props.data.user, nextProps.data.user);
     if(!this.props.data.user && nextProps.data.user){
       hashHistory.push('/dashboard');
     }
